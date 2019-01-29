@@ -1,0 +1,813 @@
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Balthazar' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Akronim' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Barrio' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Cedarville Cursive' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Freckle Face' rel='stylesheet'>
+<style type="text/css">
+body {
+	background-color: 7B4C23;
+	padding: 0;
+	margin: 0;
+	font-family: 'Balthazar';
+	font-size: 18px;
+}
+/*SPONSORS*/
+div.sponsers {
+	/*background: #FDF7DD;*/
+	height: 80px;
+	width: 100%;
+	background: linear-gradient(to right, #FDF7DD, #7B4C23);
+	color: #6BCBCF;
+	/*margin: 0;*/
+}
+div.bo{
+	height:60px;
+	width: auto;
+	padding: 0 40px 0 40px;
+	display: inline-block;
+	/*background-color: blue;*/
+	margin: 0;
+}
+#AM{
+	font-family: 'Freckle Face';
+	font-size: 22px;
+	color: #252EA0;
+}
+
+#ATL{
+	font-size: 22px;
+	color: #8B1624;
+	font-weight: bold;
+}
+
+#FE{
+	font-family: 'Barrio';
+	font-size: 24px;
+	color: #732673;
+}
+#JB{
+	color: #C087C0;
+	font-family: 'Cedarville Cursive';
+	font-size: 24px;
+	font-weight: bold;
+}
+#JANDF{
+	font-family: 'Bangers';
+	font-size: 24px;
+	color: #466034;
+}
+#SS{
+	font-family: 'Akronim';
+	font-size: 24px;
+	color: #E9BA55;
+}
+/*NAVIGATION BAR*/
+div.bar {
+	background-color: B9EFF2;
+	height: 80px;
+	width: 100%;
+	/*margin: 5px 0 0 0;*/
+}
+img.nav {
+	height: 80px;
+	width: auto;
+	padding: 0 50px 0 50px;
+	border-right: 1px solid #11686C;
+}
+h2.na {
+	display: inline;
+	float: right;
+	color: #11686C;
+	padding-right: 15px;
+	padding-top: 5px;
+	font-variant: small-caps;
+	font-family: 'Balthazar';
+}
+img.l {
+	float: right;
+	display: inline;
+	padding: 5px 5px 0 5px;
+	height: 66px;
+	width: auto;
+}
+/*PAGE HEADING*/
+img.tl {
+	height: 130px;
+	width: 130px;
+	float: left;
+	display: inline;
+	padding: 0px 5px 0px 5px;
+}
+h1 {
+	font-variant: small-caps;
+	font-family: 'Balthazar';
+	font-size: 50px;
+	color: #6BCBCF;
+	padding: 40px 0 0 40px;
+	margin: 0;
+}
+div.h {
+	height: 130px;
+	width: 100%;
+	margin: 0;
+}
+
+/*BODY BASICS*/
+h3 {
+	color: #6BCBCF;
+	font-size: 40px;
+	padding: 10px 10px 10px;
+	display: inline;
+}
+div.tic {
+	background-color: #FDF7DD;
+	padding: 15px 10px;
+	color: #7B4C23;
+}
+div.fo {
+	background-color: #FDF7DD;
+	padding: 15px 10px;
+}
+
+/*FORM STUFF*/
+form {
+	background-color: #B9EFF2;
+	margin: auto;
+	border-radius: 5px;
+	padding: 20px;
+	color: #11686C;
+	width: 1000px;
+	font-size: 20px;
+}
+fieldset {
+	color: #11686C;
+	border: 0px;
+}
+fieldset.pretty {
+	display: none;
+}
+ul {
+	list-style-type: none;
+}
+#nextButton {
+	width: 300px;
+	height: 40px;
+	font-family: 'Balthazar';
+	font-size: 30px;
+	background-color: #6BCBCF;
+	color: #11686C;
+	border: 0px;
+	border-radius: 5px;
+}
+#cost {
+	display: inline;
+	float: right;
+	margin-right: 5%;
+	font-size: 30px;
+}
+button.num {
+	background-color: #6BCBCF;
+	color: #11686C;
+	font-size: 20px;
+	border: 0px;
+	border-radius: 5%;
+}
+#fSubmit{
+	background-color: #6BCBCF;
+	color: #11686C;
+	font-size: 20px;
+	border: 0px;
+	border-radius: 5%;
+	padding: 5px;
+}
+textarea{
+	width: 900px;
+	height: 200px;
+	border: 3px solid #11686C;
+	color: #11686C;	
+}
+</style>
+<script>
+var toTAL=0.0;
+function next(step) {
+	var skip = step + 1;
+	if(step >= 4 && step < 22) {
+		toTAL = total();	
+		while(document.getElementById("animal" + skip).checked == false) {
+			if((skip + 1) == 22){
+				skip=22;
+				break;
+			}else{
+				skip++;
+			}
+		}
+	}	
+	if(step==1 && first() == true){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+		first();
+	}
+	if(step == 2 && second() == true){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+		first();
+	}else if(step == 3){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+		first();
+	}
+	if(step == 4 && fourth() == true){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+		first();
+	}
+	if(step >= 5 && step < 22){
+		if(fifth(step) == true){
+			document.getElementById("set" + step).style.display = "none";
+			document.getElementById("set" + (skip)).style.display = "block";
+			document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+			first();
+		}
+	}
+	if(step==22 && sixth()==true){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").setAttribute("onclick", "next(" + (skip) + ")");
+		first();
+	}
+	if(step==23 && seventh()==true){
+		document.getElementById("set" + step).style.display = "none";
+		document.getElementById("set" + (skip)).style.display = "block";
+		document.getElementById("nextButton").style.visibility = "hidden";
+		first();
+	}		
+}
+function first(){
+	if(document.getElementById("inH").checked == true) {
+		document.getElementById("cost").innerHTML = "Your quote for care: $" + toTAL + " per night";
+		return true;
+	}else if(document.getElementById("vI").checked == true) {
+		document.getElementById("cost").innerHTML = "Your quote for care: $14.50 hourly";
+		return true;
+	}else{
+		alert("Please select a care type!");
+		return false;
+	}
+}
+function second(){
+	x = document.getElementById("year1").value;
+	y = document.getElementById("year2").value;
+	a = document.getElementById("month1").value;
+	b = document.getElementById("month2").value;
+	m = document.getElementById("day1").value;
+	n = document.getElementById("day2").value;
+	if(x > y){
+		alert("Your starting year can't be after your ending year!");
+		return false;
+	}else{
+		if(a > b){
+			alert("Your starting month can't be after your ending month!");
+			return false;
+		}else{
+			if(m > n) {
+				alert("Your starting day can't be after your ending day!");
+				return false;
+			}else {
+				return true;
+			}
+		}
+	}
+
+}
+
+function fourth(){
+	var x;
+	var y;
+	var count = 0;
+	for(x = 5; x < 22; x++){
+		y = document.getElementById("animal" + x).checked;
+		if(y == true){
+			count++;
+		}
+	}
+	if(count == 0){
+		alert("You haven't picked an animal!");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function fifth(step){
+	var x = document.getElementById("Q" + step).value;
+	if(x == 0){
+		alert("You selected this animal but entered 0!");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function sixth(){
+	var x =  document.getElementById("area22").value;
+	var y = "What does your pet need for us to do?";
+	if(x == y){
+		alert("We do need to know about your pet! Enter any relevant information like medical needs, phobias, special diets, outdoor privliges, and anything else you'd like us to know!");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function seventh(){
+	var w = document.getElementById("firstname").value;
+	var x = document.getElementById("lastname").value;
+	var y = document.getElementById("email").value;
+	var z = document.getElementById("phone").value;
+	if(w == ""){
+		alert("Your first name is required!");
+		return false;
+	}else{
+		if(x == ""){
+			alert("Your last name is required!");
+			return false;
+		}else {
+			if(y == ""){
+				alert("Your email is required!");
+				return false;
+			}else {
+				if(z == ""){
+					alert("Your phone number is required!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+		}
+	}
+}
+function total() {
+	var dog = dogT();
+	var cat = catT();
+	var bird = birdT();
+	var fish = fishT();
+	var rep = repT();
+	var mam = mamT();
+	toTAL = dog + cat + bird + fish + rep + mam;
+	return toTAL;
+}
+function dogT(){
+	var dT = 0.00;
+	var a = 25.00;
+	var b = 20.00;
+	var c = 18.00;
+	var d = 40.00;
+	var w = document.getElementById("Q5").value;
+	var x = document.getElementById("Q6").value;
+	var y = document.getElementById("Q7").value;
+	var z = document.getElementById("Q8").value;
+	if(w >= 1) {
+		dT = dT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		dT = dT + b + ((b * (x - 1)) * 0.25);
+	}
+	if(y >= 1) {
+		dT = dT + c + ((c * (y - 1)) * 0.25);
+	}
+	if(z >= 1) {
+		dT = dT + d + ((d * (z - 1)) * 0.25);
+	}
+	return dT;
+}
+
+function catT(){
+	var cT = 0.00;
+	var a = 20.00;
+	var b = 18.00;
+	var c = 40.00;
+	var w = document.getElementById("Q9").value;
+	var x = document.getElementById("Q10").value;
+	var y = document.getElementById("Q11").value;
+	if(w >= 1) {
+		cT = cT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		cT = cT + b + ((b * (x - 1)) * 0.25);
+	}
+	if(y >= 1) {
+		cT = cT + c + ((c * (y - 1)) * 0.25);
+	}
+	return cT;
+}
+
+function birdT(){
+	var bT = 0.00;
+	var a = 25.00;
+	var b = 18.00;
+	var c = 15.00;
+	var w = document.getElementById("Q12").value;
+	var x = document.getElementById("Q13").value;
+	var y = document.getElementById("Q14").value;
+	if(w >= 1) {
+		bT = bT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		bT = bT + b + ((b * (x - 1)) * 0.25);
+	}
+	if(y >= 1) {
+		bT = bT + c + ((c * (y - 1)) * 0.25);
+	}
+	return bT;
+}
+
+function fishT(){
+	var fT = 0.00;
+	var a = 30.00;
+	var b = 15.00;
+	var w = document.getElementById("Q15").value;
+	var x = document.getElementById("Q16").value;
+	if(w >= 1) {
+		fT = fT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		fT = fT + b + ((b * (x - 1)) * 0.25);
+	}
+	return fT;
+}
+
+function repT(){
+	var rT = 0.00;
+	var a = 25.00;
+	var b = 15.00;
+	var c = 15.00;
+	var w = document.getElementById("Q17").value;
+	var x = document.getElementById("Q18").value;
+	var y = document.getElementById("Q19").value;
+	if(w >= 1) {
+		rT = rT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		rT = rT + b + ((b * (x - 1)) * 0.25);
+	}
+	if(y >= 1) {
+		rT = rT + c + ((c * (y - 1)) * 0.25);
+	}
+	return rT;
+}
+
+function mamT(){
+	var mT = 0.00;
+	var a = 15.00;
+	var b = 18.00;
+	var w = document.getElementById("Q20").value;
+	var x = document.getElementById("Q21").value;
+	if(w >= 1) {
+		mT = mT + a + ((a * (w - 1)) * 0.25);
+	}
+	if(x >= 1) {
+		mT = mT + b + ((b * (x - 1)) * 0.25);
+	}
+	return mT;
+}
+
+</script>
+</head>
+<body>
+
+<!--SPONSORS-->
+<div class="sponsers">
+<i>Our sponsers:</i>
+<div class="bo" id="AM">AnimalMart</div>
+<div class="bo" id="ATL">Atlantanarians</div>
+<div class="bo" id="FE">Feast</div>
+<div class="bo" id="JANDF">Joe's All Natural Dog Food</div>
+<div class="bo" id="JB">Jenna's Brushes</div>
+<div class="bo" id="SS">Squeaks and Squawks</div>
+</div>
+
+<div class="bar">
+<!--Navigation Bar-->
+<a href="Home.html"><img src="Home.png" class="nav" /></a>
+<a href="Product.html"><img src="Product.png" class="nav"/></a>
+<a href="Schedule.html"><img src="Schedule.png" class="nav"/></a>
+<a href="Order.html"><img src="Order.png" class="nav"/></a>
+<a href="ContactUs.html"><img src="Contact Us.png" class="nav"/></a>
+<a href="Help.html"><img src="Help.png" class="nav"/></a>
+<h2 class="na">Megan's PetSitters</h2><img src="logo.png" alt="Megan's PetSitters Logo" class="l"/>
+</div>
+
+<div class="h">
+<img src="Booking.png" alt="Booking Decal" class="tl"/><h1>Book a PetSitter</h1>
+</div>
+
+<div class="tic">
+<h3>Booking information</h3>
+<p>Here you can book a petsitter! We do not ask for you card information yet.
+ You will enter your dates, type of care, what animals need care, and then provide us with your information.
+ The petsitter assigned to you will then contact you and make sure we have all the details right.
+ We'll send you an electronic contract, and we'll be all set! Please note this contract is still legally binding.</p>
+<p>Please make sure that you've read our services page, and checked the help page for anything you're unsure about!
+ If you're still unsure, contact us! We'll be happy to help you with any concerns.</p>
+</div>
+
+<div class="fo">
+<form action="#" method="POST">
+
+<!--TYPE OF SERVICE-->
+<fieldset id="set1">
+	<p>What type of service would you like?</p>
+	<ul>
+	<li><label><input type="radio" id="inH" name="service" value="0"/>In-house care</label></li>
+	<li><label><input type="radio" id="vI" name="service" value="1"/>Visitation</label></li>
+	</ul>
+</fieldset>
+
+<!--DATES-->
+<fieldset class="pretty" id="set2">
+	<p>When do you need a petsitter?</p>
+	<p>Start date:</p>
+	<!--MONTH-->
+	<select id="month1">
+		<option value="1">January</option>
+		<option value="2">February</option>
+		<option value="3">March</option>
+		<option value="4">April</option>
+		<option value="5">May</option>
+		<option value="6">June</option>
+		<option value="7">July</option>
+		<option value="8">August</option>
+		<option value="9">September</option>
+		<option value="10">October</option>
+		<option value="11">November</option>
+		<option value="12">December</option>
+	</select>
+	<select id="day1">
+	<!--DAY-->
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	</select>
+	<!--YEAR-->
+	<select id="year1">
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+	</select>
+
+	<p>End date:</p>
+	<!--MONTH-->
+	<select id="month2">
+		<option value="1">January</option>
+		<option value="2">February</option>
+		<option value="3">March</option>
+		<option value="4">April</option>
+		<option value="5">May</option>
+		<option value="6">June</option>
+		<option value="7">July</option>
+		<option value="8">August</option>
+		<option value="9">September</option>
+		<option value="10">October</option>
+		<option value="11">November</option>
+		<option value="12">December</option>
+	</select>
+	<select id="day2">
+	<!--DAY-->
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+		<option value="11">11</option>
+		<option value="12">12</option>
+		<option value="13">13</option>
+		<option value="14">14</option>
+		<option value="15">15</option>
+		<option value="16">16</option>
+		<option value="17">17</option>
+		<option value="18">18</option>
+		<option value="19">19</option>
+		<option value="20">20</option>
+		<option value="21">21</option>
+		<option value="22">22</option>
+		<option value="23">23</option>
+		<option value="24">24</option>
+		<option value="25">25</option>
+		<option value="26">26</option>
+		<option value="27">27</option>
+		<option value="28">28</option>
+		<option value="29">29</option>
+		<option value="30">30</option>
+		<option value="31">31</option>
+	</select>
+	<!--YEAR-->
+	<select id="year2">
+		<option value="2017">2017</option>
+		<option value="2018">2018</option>
+	</select>
+</fieldset>
+
+<!--SPECIFIC PETSITTER-->
+<fieldset class="pretty" id="set3">
+	<p>Would you like a specific petsitter?</p>
+	<select>
+		<option value="No">No</option>
+		<option value="Megan">Megan</option>
+		<option value="Sequoia">Sequoia</option>
+		<option value="Aaron">Aaron</option>
+		<option value="Shree">Shree</option>
+		<option value="Jackson">Jackson</option>
+		<option value="Jon">Jon</option>
+	</select>
+</fieldset>
+
+<!--PET SPECIES-->
+<fieldset class="pretty" id="set4">
+	<p>What animals need to be cared for?</p>
+	<input type="checkbox" id="animal5" name="dog1" value="Large dog">Large dog<br>
+	<input type="checkbox" id="animal6" name="dog2" value="Small dog">Small dog<br>
+	<input type="checkbox" id="animal7" name="dog3" value="Puppy 8 weeks and up">Puppy 8 weeks and up<br>
+	<input type="checkbox" id="animal8" name="dog4" value="Litter of puppies">Litter of puppies<br>
+	<input type="checkbox" id="animal9" name="cat1" value="Cat">Cat<br>
+	<input type="checkbox" id="animal10" name="cat2" value="Kitten 6 weeks and up">Kitten 6 weeks and up<br>
+	<input type="checkbox" id="animal11" name="cat3" value="Litter of kittens">Litter of kittens<br>
+	<input type="checkbox" id="animal12" name="bird1" value="Large bird">Large bird<br>
+	<input type="checkbox" id="animal13" name="bird2" value="Medium bird">Medium bird<br>
+	<input type="checkbox" id="animal14" name="bird3" value="Small birds">Small birds<br>
+	<input type="checkbox" id="animal15" name="fish1" value="40 gallon or more fish tank">40 gallon or more fish tank<br>
+	<input type="checkbox" id="animal16" name="fish2" value="30 gallon or less fish tank">30 gallon or less fish tank<br>
+	<input type="checkbox" id="animal17" name="rep1" value="Large reptile">Large reptile<br>
+	<input type="checkbox" id="animal18" name="rep2" value="Small reptile">Small reptile<br>
+	<input type="checkbox" id="animal19" name="rep3" value="Amphibian">Amphibian<br>
+	<input type="checkbox" id="animal20" name="mam1" value="Small mammal">Small mammal<br>
+	<input type="checkbox" id="animal21" name="mam2" value="Medium or large mammal">Medium or large mammal
+</fieldset>
+<!--LARGE DOG NUMBERS-->
+<fieldset class="pretty" id="set5">
+	<p>How many large dogs do you have?</p>
+	<input type="number" id= "Q5" name="woofQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--SMALL DOG-->
+<fieldset class="pretty" id="set6">
+	<p>How many small dogs do you have?</p>
+	<input type="number" id="Q6" name="dogQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--PUPPY-->
+<fieldset class="pretty" id="set7">
+	<p>How many puppies do you have?</p>
+	<input type="number" id="Q7" name="pupperQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--LITTER PUPPY-->
+<fieldset class="pretty" id="set8">
+	<p>How many litters do you have? Mother dog counted separately.</p>
+	<input type="number" id="Q8" name="pLQ" value="0" min="0" max="2">
+</fieldset>
+
+<!--CAT-->
+<fieldset class="pretty" id="set9">
+	<p>How many cats do you have?</p>
+	<input type="number" id="Q9" name="catQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--KITTEN-->
+<fieldset class="pretty" id="set10">
+	<p>How many kittens do you have?</p>
+	<input type="number" id="Q10" name="kitQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--LITTER KITTEN-->
+<fieldset class="pretty" id="set11">
+	<p>How many litters do you have? Mother cat counted separately.</p>
+	<input type="number" id="Q11" name="kLQ" value="0" min="0" max="2">
+</fieldset>
+
+<!--BIG BIRB-->
+<fieldset class="pretty" id="set12">
+	<p>How many large birds do you have?</p>
+	<input type="number" id="Q12" name="bigBirQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--BIRB-->
+<fieldset class="pretty" id="set13">
+	<p>How many medium birds do you have?</p>
+	<input type="number" id="Q13" name="birQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--SMOL BIRB-->
+<fieldset class="pretty" id="set14">
+	<p>How many small birds do you have? We charge these by cage</p>
+	<input type="number" id="Q14" name="smolQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--BIG FISH-->
+<fieldset class="pretty" id="set15">
+	<p>How many large fish tanks do you have?</p>
+	<input type="number" id="Q15" name="sharQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--FISH-->
+<fieldset class="pretty" id="set16">
+	<p>How many medium to small fish tanks do you have?</p>
+	<input type="number" id="Q16" name="gupQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--BIG SCALES-->
+<fieldset class="pretty" id="set17">
+	<p>How many large reptiles do you have?</p>
+	<input type="number" id="Q17" name="dragonQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--LITTLE SCALES-->
+<fieldset class="pretty" id="set18">
+	<p>How many medium to small reptiles do you have?</p>
+	<input type="number" id="Q18" name="lizQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--FROG-->
+<fieldset class="pretty" id="set19">
+	<p>How many amphibians do you have?</p>
+	<input type="number" id="Q19" name="frogQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--MOUSEY-->
+<fieldset class="pretty" id="set20">
+	<p>How many small mammals do you have?</p>
+	<input type="number" id="Q20" name="moQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--FERRET-->
+<fieldset class="pretty" id="set21">
+	<p>How many medium to large mammals do you have?</p>
+	<input type="number" id="Q21" name="feQ" value="0" min="0" max="5">
+</fieldset>
+
+<!--INSTRUCTIONS-->
+<fieldset class="pretty" id="set22">
+	<p>Tell us about your pet and anything special about them!</p>
+	<textarea id="area22">What does your pet need for us to do?</textarea>
+</fieldset>
+
+<!--CUSTOMER NAME AND INFO-->
+<fieldset class="pretty" id="set23">
+	<p>We need your information now please!</p>
+	<p>First name:</p>
+	<input type="text" id="firstname" name="firstname">
+	<p>Last name:</p>
+	<input type="text" id="lastname" name="lastname">
+	<p>Email address:</p>
+	<input type="text" id="email" name="email">
+	<p>Phone number:</p>
+	<input type="text" id="phone" name="phone">
+</fieldset>
+
+<!--FINAL PAGE-->
+<fieldset class="pretty" id="set24">
+	<p>We will contact you soon to get your address, credit card info, and everything else. Thank you for booking with us!</p>
+	<input type="Submit" value="Book a PetSitter!" id="fSubmit">
+</fieldset>
+<input type="button" id="nextButton" value="Next" onclick="next(1)"><p id="cost"></p>
+</form>
+</body>
+</html>
